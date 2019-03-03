@@ -1,7 +1,7 @@
 <?php
 namespace parser\interfaces;
 
-interface DataInterface
+interface HtmlDataInterface
 {
 	public function getContent(): string;
 }

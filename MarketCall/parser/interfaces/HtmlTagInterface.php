@@ -1,7 +1,7 @@
 <?php
 namespace parser\interfaces;
 
-interface TagInterface
+interface HtmlTagInterface
 {
     public function getName(): string ;
 	public function getAttributes(): array;

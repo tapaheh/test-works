@@ -1,16 +1,16 @@
 <?php
 namespace parser\models;
 
-use parser\interfaces\TagCollectionInterface;
+use parser\interfaces\HtmlTagCollectionInterface;
 
-class TagCollection implements TagCollectionInterface
+class HtmlHtmlTagCollection implements HtmlTagCollectionInterface
 {
     protected $collection;
 
     public function __construct(array $elements)
     {
         foreach ($elements as $element) {
-            $this->collection[] = new Tag($element);
+            $this->collection[] = new HtmlHtmlTag($element);
         }
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace parser\interfaces;
 
-interface TagCollectionInterface
+interface HtmlTagCollectionInterface
 {
     public function getAllTags();
     public function getByTagName(string $tag);

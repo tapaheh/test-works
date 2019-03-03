@@ -1,9 +1,9 @@
 <?php
 namespace parser\models;
 
-use parser\interfaces\DataInterface;
+use parser\interfaces\HtmlDataInterface;
 
-class HtmlData implements DataInterface
+class HtmlHtmlData implements HtmlDataInterface
 {
     protected $content;
 

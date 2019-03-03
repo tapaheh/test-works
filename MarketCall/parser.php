@@ -2,14 +2,14 @@
 
 require_once('parser' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoloader.php');
 
-use parser\models\HtmlData;
-use parser\models\HtmlParser;
+use parser\models\HtmlHtmlData;
+use parser\models\HtmlHtmlParser;
 
 $url = 'https://habr.com/ru/';
-$data = new HtmlData();
+$data = new HtmlHtmlData();
 $data->loadByUrl($url);
 
-$parser = new HtmlParser($data);
+$parser = new HtmlHtmlParser($data);
 $collection = $parser->parseTags();
 
 echo 'Total tags: ' . count($collection->getAllTags());

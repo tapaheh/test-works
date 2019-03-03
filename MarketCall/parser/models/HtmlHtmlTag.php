@@ -1,9 +1,9 @@
 <?php
 namespace parser\models;
 
-use parser\interfaces\TagInterface;
+use parser\interfaces\HtmlTagInterface;
 
-class Tag implements TagInterface
+class HtmlHtmlTag implements HtmlTagInterface
 {
     protected $name;
     protected $attributes = [];

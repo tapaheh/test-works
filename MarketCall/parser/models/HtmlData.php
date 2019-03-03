@@ -3,7 +3,7 @@ namespace parser\models;
 
 use parser\interfaces\HtmlDataInterface;
 
-class HtmlHtmlData implements HtmlDataInterface
+class HtmlData implements HtmlDataInterface
 {
     protected $content;
 

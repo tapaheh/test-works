@@ -3,7 +3,7 @@ namespace parser\models;
 
 use parser\interfaces\HtmlTagInterface;
 
-class HtmlHtmlTag implements HtmlTagInterface
+class HtmlTag implements HtmlTagInterface
 {
     protected $name;
     protected $attributes = [];

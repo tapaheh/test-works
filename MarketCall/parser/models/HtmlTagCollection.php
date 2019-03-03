@@ -3,14 +3,14 @@ namespace parser\models;
 
 use parser\interfaces\HtmlTagCollectionInterface;
 
-class HtmlHtmlTagCollection implements HtmlTagCollectionInterface
+class HtmlTagCollection implements HtmlTagCollectionInterface
 {
     protected $collection;
 
     public function __construct(array $elements)
     {
         foreach ($elements as $element) {
-            $this->collection[] = new HtmlHtmlTag($element);
+            $this->collection[] = new HtmlTag($element);
         }
     }
 

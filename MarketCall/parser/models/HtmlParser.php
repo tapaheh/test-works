@@ -5,7 +5,7 @@ use parser\interfaces\HtmlDataInterface;
 use parser\interfaces\HtmlParserInterface;
 use parser\interfaces\HtmlTagCollectionInterface;
 
-class HtmlHtmlParser implements HtmlParserInterface
+class HtmlParser implements HtmlParserInterface
 {
     protected $data = '';
 
@@ -18,6 +18,6 @@ class HtmlHtmlParser implements HtmlParserInterface
     {
         preg_match_all('/<([^\/!=].*)>/i', $this->data, $matches);
 
-        return new HtmlHtmlTagCollection($matches[1]);
+        return new HtmlTagCollection($matches[1]);
     }
 }

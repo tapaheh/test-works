@@ -1,0 +1,23 @@
+# Using PostgreSQL
+
+CREATE TABLE public.user (
+  id serial PRIMARY KEY,
+  name varchar(155) NOT NULL UNIQUE CHECK(name != '')
+);
+
+CREATE TABLE public.user_friend (
+  user_id int NOT NULL REFERENCES public.user(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  friend_id int NOT NULL REFERENCES public.user(id) ON DELETE CASCADE ON UPDATE CASCADE CHECK(friend_id != user_id),
+  PRIMARY KEY (user_id, friend_id)
+);
+
+SELECT "user".* FROM "user"
+LEFT JOIN user_friend ON user_friend.user_id = "user".id
+GROUP BY "user".id, user_friend.user_id
+HAVING COUNT(user_friend.friend_id) > 5;
+
+SELECT "user".* FROM "user"
+LEFT JOIN user_friend ON user_friend.user_id = "user".id
+LEFT JOIN user_friend friend ON friend.friend_id = "user".id
+WHERE friend.user_id = user_friend.friend_id
+GROUP BY "user".id;

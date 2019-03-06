@@ -23,8 +23,8 @@ class CoordinatesModel implements CoordinatesInterface
 
     public function doStep(DirectionInterface $direction): void
     {
-        $this->x += $direction->getXStep() * $this->xStep;
-        $this->y += $direction->getYStep() * $this->yStep;
+        $this->x += $direction->getXShift() * $this->xStep;
+        $this->y += $direction->getYShift() * $this->yStep;
     }
 
     public function isInside(CoordinatesInterface $start, CoordinatesInterface $top): bool

@@ -2,7 +2,7 @@
 namespace app\tests;
 
 use PHPUnit\Framework\TestCase;
-use app\models\{NavigatorModel, AreaModel, CoordinatesModel, DirectionModel};
+use app\models\{NavigatorModel, AreaModel};
 use app\components\Input;
 
 class NavigationModelTest extends TestCase

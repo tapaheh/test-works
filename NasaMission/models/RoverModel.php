@@ -4,52 +4,25 @@ namespace app\models;
 use app\interfaces\AreaInterface;
 use app\interfaces\CoordinatesInterface;
 use app\interfaces\DirectionInterface;
+use app\interfaces\NavigatorInterface;
 use app\interfaces\RoverInterface;
 
 class RoverModel implements RoverInterface
 {
-    protected $area;
-    protected $coordinates;
-    protected $direction;
+    protected $navigation;
 
-    public function __construct(AreaInterface $area, CoordinatesInterface $coordinates, DirectionInterface $direction)
+    public function __construct(NavigatorInterface $navigation)
     {
-        $this->area = $area;
-
-        if (! $this->area->inArea($coordinates)) {
-            throw new \Exception('Rover is out of area!');
-        }
-
-        $this->coordinates = $coordinates;
-        $this->direction = $direction;
+        $this->navigation = $navigation;
     }
 
-    public function turnLeft()
+    public function getNavigator(): NavigatorInterface
     {
-        $this->direction->toLeft();
-    }
-
-    public function turnRight()
-    {
-        $this->direction->toRight();
-    }
-
-    public function move()
-    {
-        $this->coordinates->doStep($this->direction);
-
-        if (! $this->area->inArea($this->coordinates)) {
-            throw new \Exception('Rover is out of area!');
-        }
+        return $this->navigation;
     }
 
     public function makePhoto()
     {
-
-    }
-
-    public function getPosition(): string
-    {
-        return "{$this->coordinates->toString()} {$this->direction->toString()}";
+        // TODO: Implement makePhoto() method.
     }
 }

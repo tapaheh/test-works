@@ -32,6 +32,6 @@ class RoverController
             ));
         }
 
-        $this->rover->{$this->commandToRoverAction[$command]}();
+        $this->rover->getNavigator()->{$this->commandToRoverAction[$command]}();
     }
 }

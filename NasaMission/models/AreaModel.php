@@ -9,10 +9,10 @@ class AreaModel implements AreaInterface
     protected $startCoordinates;
     protected $topCoordinates;
 
-    public function __construct(CoordinatesInterface $startCoordinates, CoordinatesInterface $topCoordinates)
+    public function __construct(CoordinatesInterface $topCoordinates, CoordinatesInterface $startCoordinates = null)
     {
-        $this->startCoordinates = $startCoordinates;
         $this->topCoordinates = $topCoordinates;
+        $this->startCoordinates = $startCoordinates ?: new CoordinatesModel(0, 0);
     }
 
     public function inArea(CoordinatesInterface $coordinates): bool

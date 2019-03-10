@@ -27,7 +27,7 @@ class HtmlTag implements HtmlTagInterface
         return $this->attributes;
     }
 
-    public function getAttribute(string $name): string
+    public function getAttribute(string $name): ?string
     {
         foreach ($this->attributes as $key => $value) {
             if ($key == $name) return $value;

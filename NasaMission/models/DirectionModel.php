@@ -10,8 +10,6 @@ class DirectionModel implements DirectionInterface
     public const EAST = 'E';
     public const WEST = 'W';
 
-    protected $xStep;
-    protected $yStep;
     protected $direction;
 
     protected $availableDirections = [
@@ -35,7 +33,7 @@ class DirectionModel implements DirectionInterface
         self::WEST => 0
     ];
 
-    public function __construct(string $direction, int $xStep = 1, int $yStep = 1)
+    public function __construct(string $direction)
     {
         if (! in_array($direction, array_keys($this->availableDirections))) {
             throw new \Exception(sprintf("Direction can only be one of the following directions %s given %s",
@@ -45,8 +43,6 @@ class DirectionModel implements DirectionInterface
         }
 
         $this->direction = $direction;
-        $this->xStep = $xStep;
-        $this->yStep = $yStep;
     }
 
     public function toLeft()
@@ -66,14 +62,14 @@ class DirectionModel implements DirectionInterface
         $this->direction = $direction;
     }
 
-    public function getXStep(): int
+    public function getXShift(): int
     {
-        return $this->xStep * $this->directionAxisX[$this->direction];
+        return $this->directionAxisX[$this->direction];
     }
 
-    public function getYStep(): int
+    public function getYShift(): int
     {
-        return $this->yStep * $this->directionAxisY[$this->direction];
+        return $this->directionAxisY[$this->direction];
     }
 
     public function toString(): string

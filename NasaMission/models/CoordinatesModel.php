@@ -8,17 +8,23 @@ class CoordinatesModel implements CoordinatesInterface
 {
     protected $x;
     protected $y;
+    
+    protected $xStep;
+    protected $yStep;
 
-    public function __construct(int $x, int $y)
+    public function __construct(int $x, int $y, int $xStep = 1, int $yStep = 1)
     {
         $this->x = $x;
         $this->y = $y;
+        
+        $this->xStep = $xStep;
+        $this->yStep = $yStep;
     }
 
     public function doStep(DirectionInterface $direction): void
     {
-        $this->x += $direction->getXStep();
-        $this->y += $direction->getYStep();
+        $this->x += $direction->getXShift() * $this->xStep;
+        $this->y += $direction->getYShift() * $this->yStep;
     }
 
     public function isInside(CoordinatesInterface $start, CoordinatesInterface $top): bool

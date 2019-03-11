@@ -54,5 +54,5 @@ Test output:
 ```
 $ composer install
 $ php index.php
-$ ./vendor/bin/phpunit --testbox
+$ ./vendor/bin/phpunit --testdox
 ```

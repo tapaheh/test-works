@@ -2,11 +2,11 @@
 namespace app\tests;
 
 use PHPUnit\Framework\TestCase;
-use app\models\{RoverModel, NavigatorModel, AreaModel};
+use app\controllers\RoverController;
+use app\models\{AreaModel, RoverModel, NavigatorModel};
 use app\components\Input;
-use app\interfaces\NavigatorInterface;
 
-class RoverModelTest extends TestCase
+class RoverControllerTest extends TestCase
 {
     protected $rover;
 
@@ -18,10 +18,15 @@ class RoverModelTest extends TestCase
         $this->rover = new RoverModel(new NavigatorModel($area, $coordinates, $direction));
     }
 
-    public function testGetNavigator()
-    {
-        $this->assertInstanceOf(NavigatorInterface::class, $this->rover->getNavigator());
 
-        return $this->rover;
+    public function testDo()
+    {
+        $rover = $this->rover;
+        $controller = new RoverController($rover);
+
+        $controller->do('M');
+        $controller->do('R');
+
+        $this->assertEquals('1 3 E', $rover->getNavigator()->getPosition());
     }
 }

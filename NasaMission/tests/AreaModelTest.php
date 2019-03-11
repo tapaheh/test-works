@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use app\models\AreaModel;
 use app\components\Input;
 
-class RoverControllerTest extends TestCase
+class AreaModelTest extends TestCase
 {
     protected $area;
 

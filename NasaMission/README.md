@@ -49,3 +49,10 @@ MMRMMRMRRM
 Test output:  
 1 3 N  
 5 1 E
+
+# Run
+```
+$ composer install
+$ php index.php
+$ ./vendor/bin/phpunit --testbox
+```

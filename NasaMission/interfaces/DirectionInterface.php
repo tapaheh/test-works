@@ -3,8 +3,8 @@ namespace app\interfaces;
 
 interface DirectionInterface
 {
-    public function toRight();
-    public function toLeft();
+    public function toRight(): void ;
+    public function toLeft(): void ;
 
     public function getXShift(): int;
     public function getYShift(): int;

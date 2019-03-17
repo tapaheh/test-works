@@ -3,6 +3,7 @@ namespace app\models;
 
 use app\interfaces\DirectionInterface;
 
+// This class could be divided into separate classes for each direction, but I think that this is superfluous in this case.
 class DirectionModel implements DirectionInterface
 {
     public const NORTH = 'N';
@@ -10,9 +11,9 @@ class DirectionModel implements DirectionInterface
     public const EAST = 'E';
     public const WEST = 'W';
 
-    protected $direction;
+    protected $current;
 
-    protected $availableDirections = [
+    protected $directionsByAround = [
         self::NORTH,
         self::EAST,
         self::SOUTH,
@@ -35,45 +36,45 @@ class DirectionModel implements DirectionInterface
 
     public function __construct(string $direction)
     {
-        if (! in_array($direction, array_keys($this->availableDirections))) {
+        if (! in_array($direction, array_keys($this->directionsByAround))) {
             throw new \Exception(sprintf("Direction can only be one of the following directions %s given %s",
-                implode(',', array_keys($this->availableDirections)),
+                implode(',', array_keys($this->directionsByAround)),
                 $direction
             ));
         }
 
-        $this->direction = $direction;
+        $this->current = $direction;
     }
 
-    public function toLeft()
+    public function toLeft(): void
     {
-        $offset = array_search($this->direction, $this->availableDirections);
-        $direction = current(array_slice($this->availableDirections, --$offset, 1, true));
+        $offset = array_search($this->current, $this->directionsByAround);
+        $direction = current(array_slice($this->directionsByAround, --$offset, 1, true));
 
-        $this->direction = $direction;
+        $this->current = $direction;
     }
 
-    public function toRight()
+    public function toRight(): void
     {
-        $offset = array_search($this->direction, $this->availableDirections);
-        $offset = $offset >= (count($this->availableDirections) - 1) ? 0 : ++$offset;
-        $direction = current(array_slice($this->availableDirections, $offset, 1, true));
+        $offset = array_search($this->current, $this->directionsByAround);
+        $offset = $offset >= (count($this->directionsByAround) - 1) ? 0 : ++$offset;
+        $direction = current(array_slice($this->directionsByAround, $offset, 1, true));
 
-        $this->direction = $direction;
+        $this->current = $direction;
     }
 
     public function getXShift(): int
     {
-        return $this->directionAxisX[$this->direction];
+        return $this->directionAxisX[$this->current];
     }
 
     public function getYShift(): int
     {
-        return $this->directionAxisY[$this->direction];
+        return $this->directionAxisY[$this->current];
     }
 
     public function toString(): string
     {
-        return $this->direction;
+        return $this->current;
     }
 }

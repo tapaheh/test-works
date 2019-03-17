@@ -1,8 +1,6 @@
 <?php
-
 require_once('vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 
-use app\controllers\RoverController;
 use app\components\Input;
 use app\models\{RoverModel, AreaModel, NavigatorModel};
 
@@ -17,9 +15,8 @@ $rover1 = new RoverModel(new NavigatorModel($area, $coordinates, $direction));
 
 echo "Enter a series of instructions telling the first rover how to explore the plateau(LMLMLMLMM): ";
 $input = trim(fgets(STDIN)) ?: 'LMLMLMLMM';
-$roverController1 = new RoverController($rover1);
 foreach (Input::roverCommandsFromString($input) as $command) {
-    $roverController1->do($command);
+    $command->do($rover1);
 }
 
 echo "Enter second rover's position(3 3 E): ";
@@ -29,9 +26,8 @@ $rover2 = new RoverModel(new NavigatorModel($area, $coordinates, $direction));
 
 echo "Enter a series of instructions telling the second rover how to explore the plateau(MMRMMRMRRM): ";
 $input = trim(fgets(STDIN)) ?: 'MMRMMRMRRM';
-$roverController2 = new RoverController($rover2);
 foreach (Input::roverCommandsFromString($input) as $command) {
-    $roverController2->do($command);
+    $command->do($rover2);
 }
 
 echo "\r\n";

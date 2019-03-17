@@ -3,8 +3,11 @@
 namespace app\components;
 
 use app\interfaces\CoordinatesInterface;
+use app\models\CommandFactory;
 use app\models\CoordinatesModel;
 use app\models\DirectionModel;
+use function foo\func;
+use PHPUnit\Runner\Exception;
 
 
 class Input
@@ -13,7 +16,7 @@ class Input
     {
         $inputs = self::toArray($input);
 
-        list($x, $y) = $inputs;
+        [$x, $y] = $inputs;
 
         if ($x === null || $y === null) {
             throw new \Exception(sprintf("Command must be format '%s' given '%s'",
@@ -48,7 +51,7 @@ class Input
     {
         $inputs = self::toArray($input);
 
-        list($x, $y, $direction) = $inputs;
+        [$x, $y, $direction] = $inputs;
 
         if ($x === null || $y === null || $direction === null) {
             throw new \Exception(sprintf("Command must be format '%s' given '%s'",
@@ -63,11 +66,29 @@ class Input
         ];
     }
 
+    /**
+     * Return [CommandInterface]
+     *
+     * @param string $input
+     * @return array
+     * @throws \Exception
+     */
     public static function roverCommandsFromString(string $input): array
     {
         $inputs = self::toArray($input);
 
-        return $inputs;
+        array_map(function($item) {
+            if (! is_string($item)) throw new \Exception(sprintf("Command must be string, given '%s'",
+                $item
+            ));
+        }, $inputs);
+
+        $commands = [];
+        foreach ($inputs as $input) {
+            $commands[] = CommandFactory::create($input);
+        }
+
+        return $commands;
     }
 
 

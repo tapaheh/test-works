@@ -14,6 +14,8 @@
 ---
 # RUN
 
+Для запуска можно воспользоватья [докером](https://github.com/kr0lik/docker-web-server)
+
 1. composer install
 2. php yii migrate
 3. Открыть в бразуере

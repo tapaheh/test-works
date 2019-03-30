@@ -14,7 +14,7 @@
 ---
 # RUN
 
-Для проверки можно воспользоватья [докером](https://github.com/kr0lik/docker-web-server)
+Для быстрого запуска веб окружения для проверки задания можно воспользоваться [докером](https://github.com/kr0lik/docker-web-server)
 
 1. composer install
 2. php yii migrate
